@@ -13,7 +13,7 @@ import model.map.Location;
  * @since 1.0
  */
 public class Alpaca extends AbstractUnit {
-
+      
   /**
    * Creates a new Alpaca.
    *
@@ -35,7 +35,7 @@ public class Alpaca extends AbstractUnit {
    * The <i>Alpaca</i> cannot equip any item.
    */
   @Override
-  public void equipItem(final IEquipableItem item) {
+  public void setEquippedItem(final IEquipableItem item) {
     // Method body intentionally left empty
   }
 

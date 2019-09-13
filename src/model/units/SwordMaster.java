@@ -2,7 +2,7 @@ package model.units;
 
 import model.items.IEquipableItem;
 import model.map.Location;
-
+import model.items.Sword;
 /**
  * This class represents a <i>SwordMaster</i> type unit.
  * <p>
@@ -24,10 +24,10 @@ public class SwordMaster extends AbstractUnit {
    * @param item
    *     the item to equip
    */
-  @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof SwordMaster) {
+  public void setEquippedItem(Sword item) {
+    if(items.contains(item)) {
       equippedItem = item;
+      items.remove(item);
     }
   }
 }

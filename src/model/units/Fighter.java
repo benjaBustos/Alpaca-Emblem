@@ -24,10 +24,10 @@ public class Fighter extends AbstractUnit {
    * @param item
    *     the item to equip
    */
-  @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof Axe) {
+  public void setEquippedItem(Axe item) {
+    if(items.contains(item)) {
       equippedItem = item;
+      items.remove(item);
     }
   }
 }

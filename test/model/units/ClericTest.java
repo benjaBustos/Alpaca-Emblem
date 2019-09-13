@@ -32,7 +32,8 @@ public class ClericTest extends AbstractTestUnit {
   @Override
   public void equipStaffTest() {
     assertNull(cleric.getEquippedItem());
-    cleric.equipItem(staff);
+    cleric.addItem(staff);
+    cleric.setEquippedItem(staff);
     assertEquals(staff, cleric.getEquippedItem());
   }
 }

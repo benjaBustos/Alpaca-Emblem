@@ -21,6 +21,7 @@ public interface IEquipableItem {
    */
   void equipTo(IUnit unit);
 
+  void giveTo(IUnit unit);
   /**
    * @return the unit that has currently equipped this item
    */
@@ -46,3 +47,4 @@ public interface IEquipableItem {
    */
   int getMaxRange();
 }
+

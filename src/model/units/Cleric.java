@@ -32,10 +32,10 @@ public class Cleric extends AbstractUnit {
    * @param item
    *     the item to equip
    */
-  @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof Staff) {
+  public void setEquippedItem(Staff item) {
+    if(items.contains(item)) {
       equippedItem = item;
+      items.remove(item);
     }
   }
 }

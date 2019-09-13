@@ -25,7 +25,7 @@ public abstract class AbstractUnit implements IUnit {
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
-
+  private int maxItems;
   /**
    * Creates a new Unit.
    *
@@ -38,12 +38,14 @@ public abstract class AbstractUnit implements IUnit {
    * @param maxItems
    *     maximum amount of items this unit can carry
    */
-  protected AbstractUnit(final int hitPoints, final int movement,
-      final Location location, final int maxItems, final IEquipableItem... items) {
+  protected AbstractUnit( int hitPoints, int movement,
+      Location location, int maxItems, IEquipableItem... items) {
     this.currentHitPoints = hitPoints;
     this.movement = movement;
     this.location = location;
+    this.maxItems = maxItems;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
+
   }
 
   @Override
@@ -62,8 +64,8 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void setEquippedItem(final IEquipableItem item) {
-    this.equippedItem = item;
+  public void setEquippedItem( IEquipableItem item) {
+
   }
 
   @Override
@@ -86,6 +88,24 @@ public abstract class AbstractUnit implements IUnit {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
         && targetLocation.getUnit() == null) {
       setLocation(targetLocation);
+    }
+  }
+
+  /**
+   * adds item to list of items
+   * @param item
+   */
+  public void addItem(IEquipableItem item){
+    if(items.size()<maxItems){
+      items.add(item);
+    }
+  }
+  public void giveItem(IUnit other, IEquipableItem item){
+    if(this.getLocation().distanceTo(other.getLocation())==1){
+      if(this.items.contains(item)){
+        item.giveTo(other);
+        this.items.remove(item);
+      }
     }
   }
 }

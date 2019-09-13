@@ -1,14 +1,15 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import model.items.*;
 import model.map.Field;
 import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -23,11 +24,12 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
-
+  protected List<IEquipableItem> items;
   @Override
   public void setTargetAlpaca() {
     targetAlpaca = new Alpaca(50, 2, field.getCell(1, 0));
   }
+
 
   /**
    * Sets up the units and weapons to be tested
@@ -38,6 +40,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     setTestUnit();
     setTargetAlpaca();
     setWeapons();
+    setInventory();
   }
 
   /**
@@ -68,7 +71,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
   }
-
+  public void setInventory(){
+    this.items = new ArrayList<>();
+  }
   /**
    * Checks that the constructor works properly.
    */
@@ -106,7 +111,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public void checkEquippedItem(IEquipableItem item) {
     assertNull(getTestUnit().getEquippedItem());
-    getTestUnit().equipItem(item);
+    getTestUnit().setEquippedItem(item);
     assertNull(getTestUnit().getEquippedItem());
   }
 
@@ -177,6 +182,16 @@ public abstract class AbstractTestUnit implements ITestUnit {
   /**
    * Checks if the unit moves correctly
    */
+  @Test
+  public void addItemTest(){
+    assertTrue(getInventory().isEmpty());
+    getTestUnit().addItem(getAxe());
+    getTestUnit().addItem(getSword());
+    getTestUnit().addItem(getBow());
+    getTestUnit().addItem(getStaff());
+    assertFalse(getTestUnit().getItems().contains(getStaff()));
+  }
+  public List getInventory() {return items; }
   @Override
   @Test
   public void testMovement() {
@@ -190,6 +205,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     getTestUnit().moveTo(getField().getCell(0, 1));
     assertEquals(new Location(0, 2), getTestUnit().getLocation());
   }
+
 
   /**
    * @return the test field

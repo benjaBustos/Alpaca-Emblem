@@ -16,14 +16,6 @@ import model.map.Location;
 public interface IUnit {
 
   /**
-   * Sets the currently equipped item of this unit.
-   *
-   * @param item
-   *     the item to equip
-   */
-  void equipItem(IEquipableItem item);
-
-  /**
    * @return hit points of the unit
    */
   int getCurrentHitPoints();
@@ -65,4 +57,8 @@ public interface IUnit {
    * If the other location is out of this unit's movement range, the unit doesn't move.
    */
   void moveTo(Location targetLocation);
+
+  void addItem(IEquipableItem item);
+
+  void giveItem(IUnit other, IEquipableItem item);
 }

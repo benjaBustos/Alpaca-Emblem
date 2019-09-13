@@ -26,4 +26,11 @@ public class Bow extends AbstractItem {
     this.minRange = Math.max(minRange, 2);
     this.maxRange = Math.max(maxRange, this.minRange);
   }
+  /**
+   * Equals for bow.
+   */
+  @Override
+  public boolean equals(Object obj){
+    return obj instanceof Bow && super.equals(obj);
+  }
 }
