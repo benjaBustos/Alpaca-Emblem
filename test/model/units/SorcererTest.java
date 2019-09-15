@@ -4,10 +4,14 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.DarknessBook;
+import model.items.LightBook;
 import org.junit.jupiter.api.Test;
 
 public class SorcererTest extends AbstractTestUnit {
-    private Sorcerer sorcerer;
+    private Sorcerer sorcerer,magito;
+    private DarknessBook libroOscuro;
+    private LightBook libroLuz;
 
     /**
      * Set up the main unit that's going to be tested in the test set
@@ -15,6 +19,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Override
     public void setTestUnit() {
         sorcerer = new Sorcerer(50, 2, field.getCell(0, 0));
+        magito = new Sorcerer(50,2,field.getCell(1,0));
     }
 
     /**
@@ -35,5 +40,8 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.addItem(darknessBook);
         sorcerer.setEquippedItem(darknessBook);
         assertEquals(darknessBook, sorcerer.getEquippedItem());
+
     }
+
+
 }

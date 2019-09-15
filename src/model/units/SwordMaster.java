@@ -37,6 +37,7 @@ public class SwordMaster extends AbstractUnit {
   public void setEquippedItem(Sword item) {
     if(items.contains(item)) {
       equippedItem = item;
+      item.setOwner(this);
     }
     else{
       equippedItem = null;

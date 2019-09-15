@@ -18,9 +18,10 @@ public class LightBook extends AbstractItem implements MagicItem {
 
     @Override
     public void attack(IUnit other) {
-        if ((this.getOwner().getLocation()).distanceTo(other.getLocation()) <= this.getMaxRange() && (this.getOwner().getLocation()).distanceTo(other.getLocation()) >= this.getMinRange()) {
+        if(this.getOwner().getLocation().distanceTo(other.getLocation()) <= this.getMaxRange() && this.getOwner().getLocation().distanceTo(other.getLocation()) >= this.getMinRange()) {
             other.receiveAttackFromLightBook(this);
         }
+
 
     }
     @Override

@@ -28,6 +28,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected LightBook lightBook;
   protected SpiritBook spiritBook;
   protected List<IEquipableItem> items;
+  protected Sorcerer sorcerer;
+  protected Sorcerer magito;
   @Override
   public void setTargetAlpaca() {
     targetAlpaca = new Alpaca(50, 2, field.getCell(1, 0));
@@ -44,6 +46,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     setTargetAlpaca();
     setWeapons();
     setInventory();
+
   }
 
   /**
@@ -73,12 +76,25 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
-    this.darknessBook = new DarknessBook("Darkbook",3,1,2);
-    this.lightBook = new LightBook("Lightbook",3,1,2);
+    this.darknessBook = new DarknessBook("Darkbook",10,1,2);
+    this.lightBook = new LightBook("Lightbook",20,1,2);
     this.spiritBook = new SpiritBook("Spiritbook",4,1,2);
+    this.sorcerer = new Sorcerer(50, 2, field.getCell(0, 0));
+    this.magito = new Sorcerer(50,2,field.getCell(1,0));
+
   }
   public void setInventory(){
     this.items = new ArrayList<>();
+
+  }
+  @Test
+  public void attackTest(){
+    sorcerer.addItem(darknessBook);
+    sorcerer.setEquippedItem(darknessBook);
+    magito.addItem(lightBook);
+    magito.setEquippedItem(lightBook);
+    magito.attack(sorcerer);
+    assertEquals(20,sorcerer.getCurrentHitPoints());
   }
   /**
    * Checks that the constructor works properly.
@@ -231,8 +247,13 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipBookTest() { checkEquippedItem(getBow());}
+  public void equipBookTest() { checkEquippedItem(getDarknessBook());}
 
   @Override
   public DarknessBook getDarknessBook(){return darknessBook;}
+  @Override
+  public LightBook getLightBook(){return lightBook;}
+
+  @Override
+  public SpiritBook getSpiritBook(){return spiritBook;}
 }

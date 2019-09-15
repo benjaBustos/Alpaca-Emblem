@@ -121,4 +121,8 @@ public interface ITestUnit {
   void equipBookTest();
 
   DarknessBook getDarknessBook();
+
+  LightBook getLightBook();
+
+  SpiritBook getSpiritBook();
 }

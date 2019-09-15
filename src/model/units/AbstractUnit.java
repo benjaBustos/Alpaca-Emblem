@@ -70,7 +70,6 @@ public abstract class AbstractUnit implements IUnit {
   public void setEquippedItem( IEquipableItem item) {
 
   }
-
   @Override
   public Location getLocation() {
     return location;

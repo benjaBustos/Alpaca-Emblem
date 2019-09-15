@@ -46,7 +46,11 @@ public class Hero extends AbstractUnit {
   public void setEquippedItem(Spear item) {
     if(items.contains(item)) {
       equippedItem = item;
+      item.setOwner(this);
 
+    }
+    else{
+      equippedItem = null;
     }
   }
 }

@@ -34,7 +34,11 @@ public class Sorcerer extends AbstractUnit {
     public void setEquippedItem(MagicItem item) {
         if(items.contains(item)) {
             equippedItem = item;
+            item.setOwner(this);
 
+        }
+        else{
+            equippedItem = null;
         }
     }
 }

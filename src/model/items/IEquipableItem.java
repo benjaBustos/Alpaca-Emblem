@@ -54,5 +54,7 @@ public interface IEquipableItem {
   void receiveDarkAttack(DarknessBook darknessBook);
 
   void receiveLightAttack(LightBook lightBook);
+
+  void setOwner(IUnit unit);
 }
 
