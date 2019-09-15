@@ -15,7 +15,10 @@ public class LightBook extends AbstractItem implements MagicItem {
     public LightBook(String name, int power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);
     }
-
+    /**
+     * attack method for item to another unit
+     * @param other
+     */
     @Override
     public void attack(IUnit other) {
         if(this.getOwner().getLocation().distanceTo(other.getLocation()) <= this.getMaxRange() && this.getOwner().getLocation().distanceTo(other.getLocation()) >= this.getMinRange()) {
@@ -24,19 +27,33 @@ public class LightBook extends AbstractItem implements MagicItem {
 
 
     }
+    /**
+     * recieve magic attack SPIRIT
+     * @param spiritBook
+     */
     @Override
     public void receiveSpiritAttack(SpiritBook spiritBook){this.getOwner().receiveWeaknessAttack(spiritBook);}
+    /**
+     * recieve magic attack DARKNESS
+     *
+     * @param darknessBook
+     */
     @Override
     public void receiveDarkAttack(DarknessBook darknessBook){this.getOwner().receiveResistantAttack(darknessBook);}
+    /**
+     * recieve magic attack LIGHT
+     * @param lightBook
+     */
     @Override
     public void receiveLightAttack(LightBook lightBook){this.getOwner().receiveAttack(lightBook);}
-
+    /**
+     * override for lightbook object
+     * @param obj
+     * @return boolean if tested item is equal
+     */
     @Override
     public boolean equals(Object obj) {
         return obj instanceof LightBook && super.equals(obj);
     }
-    /**public void setEquippedItem(Sorcerer sorcerer){
-        sorcerer.setEquippedLBook(this);
-    }
-     */
+
 }

@@ -24,10 +24,22 @@ public class Sorcerer extends AbstractUnit {
     public void receiveAttackFromSpear(Spear spear){receiveWeaknessAttack(spear);}
     @Override
     public void receiveAttackFromSword(Sword sword){receiveWeaknessAttack(sword);}
+    /**
+     * general damage from diferent class (Darkmagic)
+     * @param dbook
+     */
     @Override
     public void receiveAttackFromDarknessBook(DarknessBook dbook){this.getEquippedItem().receiveDarkAttack(dbook);}
+    /**
+     * general damage from diferent class (Lightmagic)
+     * @param lbook
+     */
     @Override
     public void receiveAttackFromLightBook(LightBook lbook){this.getEquippedItem().receiveLightAttack(lbook);}
+    /**
+     * general damage from diferent class (Spiritmagic)
+     * @param sbook
+     */
     @Override
     public void receiveAttackFromSpiritBook(SpiritBook sbook){this.getEquippedItem().receiveSpiritAttack(sbook);}
 

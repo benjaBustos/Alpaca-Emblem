@@ -17,10 +17,15 @@ public interface IEquipableItem {
    * Equips this item to a unit.
    *
    * @param unit
-   *     the unit that will be quipped with the item
+   *     the unit that will be equipped with the item
    */
   void equipTo(IUnit unit);
 
+  /**
+   * Give this item to a  unit
+   * @param unit
+   * the unit that will be equipper with the item
+   */
   void giveTo(IUnit unit);
   /**
    * @return the unit that has currently equipped this item
@@ -47,14 +52,35 @@ public interface IEquipableItem {
    */
   int getMaxRange();
 
+  /**
+   * item attack another unit
+   *
+   * @param other
+   */
   void attack(IUnit other);
 
+  /**
+   * general method item receieve spirit attack
+   * @param spiritBook
+   */
   void receiveSpiritAttack(SpiritBook spiritBook);
 
+  /**
+   * general method item receieve darkness attack
+   * @param darknessBook
+   */
   void receiveDarkAttack(DarknessBook darknessBook);
 
+  /**
+   * general method item receieve light attack
+   * @param lightBook
+   */
   void receiveLightAttack(LightBook lightBook);
 
+  /**
+   * set the owner to this item
+   * @param unit
+   */
   void setOwner(IUnit unit);
 }
 

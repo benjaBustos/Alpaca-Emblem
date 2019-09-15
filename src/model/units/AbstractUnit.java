@@ -51,40 +51,73 @@ public abstract class AbstractUnit implements IUnit {
 
   }
 
+  /**
+   * get actual hit points for unit
+   * @return actual hitpoints
+   */
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;
   }
 
+  /**
+   * get Bag of items for unit
+   * @return Bag
+   */
   @Override
   public List<IEquipableItem> getItems() {
     return List.copyOf(items);
   }
 
+  /**get unit's equipped item
+   *
+   * @return equipped item
+   */
   @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }
 
+  /**
+   * general method to set item to unit
+   * @param item
+   */
   @Override
   public void setEquippedItem( IEquipableItem item) {
 
   }
+
+  /**
+   * general location method, gets unit current location
+   * @return
+   */
   @Override
   public Location getLocation() {
     return location;
   }
 
+  /**
+   * sets location for unit
+   * @param location
+   */
   @Override
   public void setLocation(final Location location) {
     this.location = location;
   }
 
+  /**
+   * get how much movement a unit can move
+   * @return movement
+   */
   @Override
   public int getMovement() {
     return movement;
   }
 
+  /**
+   * general move method for unit
+   * @param targetLocation
+   */
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
@@ -103,6 +136,12 @@ public abstract class AbstractUnit implements IUnit {
       items.add(item);
     }
   }
+
+  /**
+   * Exchange method between units
+   * @param other
+   * @param item
+   */
   @Override
   public void giveItem(IUnit other, IEquipableItem item){
     if(this.getLocation().distanceTo(other.getLocation())==1){
@@ -113,43 +152,113 @@ public abstract class AbstractUnit implements IUnit {
       }
     }
   }
+
+  /**
+   * unit counter attacks after taking damage
+   * @param other
+   */
   @Override
   public void counterAttack(IUnit other){if(this.equippedItem != null && this.currentHitPoints > 0 && other.getCurrentHitPoints() > 0){this.equippedItem.attack(other); }
   }
+
+  /**
+   * principal attack methot between units
+   * @param other
+   */
   @Override
   public void attack(IUnit other){
     if(this.equippedItem != null && this.currentHitPoints > 0 && other.getCurrentHitPoints() > 0){
       this.equippedItem.attack(other);
       other.counterAttack(this);}
   }
+
+  /**
+   * generic unit receiving attack from item
+   * @param item
+   */
   public void receiveAttack(IEquipableItem item){
     this.currentHitPoints -= item.getPower();
     if(this.currentHitPoints <= 0){
       this.currentHitPoints = 0;
     }
   }
+
+  /**
+   * unit receiving heal
+   * @param item
+   */
   public void receiveHeal(IEquipableItem item){this.currentHitPoints += item.getPower();}
+
+  /**
+   * unit receiving attack from bow
+   * @param bow
+   */
   @Override
   public void receiveAttackFromBow(Bow bow){receiveAttack(bow);}
+
+  /**
+   * unit receiving attack from axe
+   * @param axe
+   */
   @Override
   public void receiveAttackFromAxe(Axe axe){receiveAttack(axe);}
+
+  /**
+   * unit receiving attack from spear
+   * @param spear
+   */
   @Override
   public void receiveAttackFromSpear(Spear spear){receiveAttack(spear);}
+
+  /**
+   * unit receiving attack from sword
+   * @param sword
+   */
   @Override
   public void receiveAttackFromSword(Sword sword){receiveAttack(sword);}
+
+  /**
+   * unit receiving receiving heal by staff
+   * @param staff
+   */
   @Override
   public void receiveHealFromStaff(Staff staff){receiveHeal(staff);}
+
+  /**
+   * unit receiving attack from dark magic
+   * @param dbook
+   */
   @Override
   public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveAttack(dbook);}
+
+  /**
+   * unit receiving attack from light magic
+   * @param lbook
+   */
   @Override
   public void receiveAttackFromLightBook(LightBook lbook){receiveAttack(lbook);}
+
+  /**
+   * unit receiving attack from spirit magic
+   * @param sbook
+   */
   @Override
   public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveAttack(sbook);}
+
+  /**
+   * unit receiving damage from weakness attack
+   * @param item
+   */
   @Override
   public void receiveWeaknessAttack(IEquipableItem item){this.currentHitPoints -= item.getPower() * 1.5;
     if(this.currentHitPoints <= 0){
       this.currentHitPoints = 0;
     }}
+
+  /**
+   * unit receiving damage from resistant attack
+   * @param item
+   */
   @Override
   public void receiveResistantAttack(IEquipableItem item){this.currentHitPoints -= item.getPower() -20;
     if(this.currentHitPoints <= 0){

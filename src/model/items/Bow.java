@@ -28,7 +28,10 @@ public class Bow extends AbstractItem {
     this.minRange = Math.max(minRange, 2);
     this.maxRange = Math.max(maxRange, this.minRange);
   }
-
+  /**
+   * attack method for item to another unit
+   * @param other
+   */
   @Override
   public void attack(IUnit other) {
     if ((this.getOwner().getLocation()).distanceTo(other.getLocation()) <= this.getMaxRange() && (this.getOwner().getLocation()).distanceTo(other.getLocation()) >= this.getMinRange()) {
@@ -36,14 +39,29 @@ public class Bow extends AbstractItem {
     }
 
   }
+  /**
+   * recieve magic attack SPIRIT
+   * @param spiritBook
+   */
   @Override
   public void receiveSpiritAttack(SpiritBook spiritBook){}
+  /**
+   * recieve magic attack DARKNESS
+   *
+   * @param darknessBook
+   */
   @Override
   public void receiveDarkAttack(DarknessBook darknessBook){}
+  /**
+   * recieve magic attack LIGHT
+   * @param lightBook
+   */
   @Override
   public void receiveLightAttack(LightBook lightBook){}
   /**
-   * Equals for bow.
+   * override for bow object
+   * @param obj
+   * @return boolean if tested item is equal
    */
   @Override
   public boolean equals(Object obj) {

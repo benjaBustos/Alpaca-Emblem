@@ -17,10 +17,22 @@ public class Fighter extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
+  /**
+   * general damage from diferent class (Darkmagic)
+   * @param dbook
+   */
   @Override
   public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveWeaknessAttack(dbook);}
+  /**
+   * general damage from diferent class (Lightmagic)
+   * @param lbook
+   */
   @Override
   public void receiveAttackFromLightBook(LightBook lbook){receiveWeaknessAttack(lbook);}
+  /**
+   * general damage from diferent class (Spiritmagic)
+   * @param sbook
+   */
   @Override
   public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveWeaknessAttack(sbook);}
   @Override
