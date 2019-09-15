@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.IUnit;
+
 /**
  * @author Ignacio Slater Muñoz
  * @since
@@ -26,11 +28,25 @@ public class Bow extends AbstractItem {
     this.minRange = Math.max(minRange, 2);
     this.maxRange = Math.max(maxRange, this.minRange);
   }
+
+  @Override
+  public void attack(IUnit other) {
+    if ((this.getOwner().getLocation()).distanceTo(other.getLocation()) <= this.getMaxRange() && (this.getOwner().getLocation()).distanceTo(other.getLocation()) >= this.getMinRange()) {
+      other.receiveAttackFromBow(this);
+    }
+
+  }
+  @Override
+  public void receiveSpiritAttack(SpiritBook spiritBook){}
+  @Override
+  public void receiveDarkAttack(DarknessBook darknessBook){}
+  @Override
+  public void receiveLightAttack(LightBook lightBook){}
   /**
    * Equals for bow.
    */
   @Override
-  public boolean equals(Object obj){
+  public boolean equals(Object obj) {
     return obj instanceof Bow && super.equals(obj);
   }
 }

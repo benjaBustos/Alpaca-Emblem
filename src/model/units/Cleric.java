@@ -1,7 +1,6 @@
 package model.units;
 
-import model.items.IEquipableItem;
-import model.items.Staff;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -26,6 +25,13 @@ public class Cleric extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
+  @Override
+  public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveWeaknessAttack(dbook);}
+  @Override
+  public void receiveAttackFromLightBook(LightBook lbook){receiveWeaknessAttack(lbook);}
+  @Override
+  public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveWeaknessAttack(sbook);}
+
   /**
    * Sets the currently equipped item of this unit.
    *
@@ -35,7 +41,7 @@ public class Cleric extends AbstractUnit {
   public void setEquippedItem(Staff item) {
     if(items.contains(item)) {
       equippedItem = item;
-      items.remove(item);
+
     }
   }
 }

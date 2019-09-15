@@ -1,7 +1,6 @@
 package model.units;
 
-import model.items.IEquipableItem;
-import model.items.Spear;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -27,6 +26,17 @@ public class Hero extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
+  @Override
+  public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveWeaknessAttack(dbook);}
+  @Override
+  public void receiveAttackFromLightBook(LightBook lbook){receiveWeaknessAttack(lbook);}
+  @Override
+  public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveWeaknessAttack(sbook);}
+  @Override
+  public void receiveAttackFromAxe(Axe axe){receiveWeaknessAttack(axe);}
+  @Override
+  public void receiveAttackFromSword(Sword sword){receiveResistantAttack(sword);}
+
   /**
    * Sets the currently equipped item of this unit.
    *
@@ -36,7 +46,7 @@ public class Hero extends AbstractUnit {
   public void setEquippedItem(Spear item) {
     if(items.contains(item)) {
       equippedItem = item;
-      items.remove(item);
+
     }
   }
 }

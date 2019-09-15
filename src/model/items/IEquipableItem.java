@@ -46,5 +46,13 @@ public interface IEquipableItem {
    * @return the maximum range of the item
    */
   int getMaxRange();
+
+  void attack(IUnit other);
+
+  void receiveSpiritAttack(SpiritBook spiritBook);
+
+  void receiveDarkAttack(DarknessBook darknessBook);
+
+  void receiveLightAttack(LightBook lightBook);
 }
 

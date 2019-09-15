@@ -116,4 +116,9 @@ public interface ITestUnit {
 
   @Test
   void addItemTest();
+
+  @Test
+  void equipBookTest();
+
+  DarknessBook getDarknessBook();
 }

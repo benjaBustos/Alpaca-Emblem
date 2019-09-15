@@ -1,7 +1,6 @@
 package model.units;
 
-import model.items.Bow;
-import model.items.IEquipableItem;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -31,6 +30,13 @@ public class Archer extends AbstractUnit {
     super(hitPoints, movement, position, 3, items);
   }
 
+
+  @Override
+  public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveWeaknessAttack(dbook);}
+  @Override
+  public void receiveAttackFromLightBook(LightBook lbook){receiveWeaknessAttack(lbook);}
+  @Override
+  public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveWeaknessAttack(sbook);}
   /**
    * Sets the currently equipped item of this unit.
    * <p>
@@ -42,7 +48,7 @@ public class Archer extends AbstractUnit {
   public void setEquippedItem(Bow item) {
     if(items.contains(item)) {
       equippedItem = item;
-      items.remove(item);
+
     }
   }
 

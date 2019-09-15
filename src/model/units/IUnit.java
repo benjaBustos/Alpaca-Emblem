@@ -1,7 +1,8 @@
 package model.units;
 
 import java.util.List;
-import model.items.IEquipableItem;
+
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -61,4 +62,30 @@ public interface IUnit {
   void addItem(IEquipableItem item);
 
   void giveItem(IUnit other, IEquipableItem item);
+
+  void counterAttack(IUnit other);
+
+  void attack(IUnit other);
+
+   void receiveAttackFromBow(Bow bow);
+
+   void receiveAttackFromAxe(Axe axe);
+
+   void receiveAttackFromSpear(Spear spear);
+
+   void receiveAttackFromSword(Sword sword);
+
+   void receiveHealFromStaff(Staff staff);
+
+   void receiveAttackFromDarknessBook(DarknessBook dbook);
+
+   void receiveAttackFromLightBook(LightBook lbook);
+
+   void receiveAttackFromSpiritBook(SpiritBook sbook);
+
+   void receiveWeaknessAttack(IEquipableItem item);
+
+   void receiveResistantAttack(IEquipableItem item);
+
+   void receiveAttack(IEquipableItem item);
 }

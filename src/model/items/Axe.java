@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.IUnit;
+
 /**
  * This class represents an Axe.
  * <p>
@@ -8,7 +10,7 @@ package model.items;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Axe extends AbstractAgroItem {
+public class Axe extends AbstractItem {
 
   /**
    * Creates a new Axe item
@@ -24,5 +26,26 @@ public class Axe extends AbstractAgroItem {
    */
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
+  }
+
+  @Override
+  public void attack(IUnit other) {
+    if ((this.getOwner().getLocation()).distanceTo(other.getLocation()) <= this.getMaxRange() && (this.getOwner().getLocation()).distanceTo(other.getLocation()) >= this.getMinRange()) {
+      other.receiveAttackFromAxe(this);
+    }
+
+
+  }
+  @Override
+  public void receiveSpiritAttack(SpiritBook spiritBook){}
+  @Override
+  public void receiveDarkAttack(DarknessBook darknessBook){}
+  @Override
+  public void receiveLightAttack(LightBook lightBook){}
+
+
+  @Override
+  public boolean equals(Object obj) {
+    return obj instanceof Axe && super.equals(obj);
   }
 }

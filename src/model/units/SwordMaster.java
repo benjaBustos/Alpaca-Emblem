@@ -1,8 +1,8 @@
 package model.units;
 
-import model.items.IEquipableItem;
+import model.items.*;
 import model.map.Location;
-import model.items.Sword;
+
 /**
  * This class represents a <i>SwordMaster</i> type unit.
  * <p>
@@ -18,6 +18,16 @@ public class SwordMaster extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
+  @Override
+  public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveWeaknessAttack(dbook);}
+  @Override
+  public void receiveAttackFromLightBook(LightBook lbook){receiveWeaknessAttack(lbook);}
+  @Override
+  public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveWeaknessAttack(sbook);}
+  @Override
+  public void receiveAttackFromSpear(Spear spear){receiveWeaknessAttack(spear);}
+  @Override
+  public void receiveAttackFromAxe(Axe axe){receiveResistantAttack(axe);}
   /**
    * Sets the currently equipped item of this unit.
    *
@@ -27,7 +37,9 @@ public class SwordMaster extends AbstractUnit {
   public void setEquippedItem(Sword item) {
     if(items.contains(item)) {
       equippedItem = item;
-      items.remove(item);
+    }
+    else{
+      equippedItem = null;
     }
   }
 }

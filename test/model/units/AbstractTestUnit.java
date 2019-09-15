@@ -24,6 +24,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
+  protected DarknessBook darknessBook;
+  protected LightBook lightBook;
+  protected SpiritBook spiritBook;
   protected List<IEquipableItem> items;
   @Override
   public void setTargetAlpaca() {
@@ -70,6 +73,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
+    this.darknessBook = new DarknessBook("Darkbook",3,1,2);
+    this.lightBook = new LightBook("Lightbook",3,1,2);
+    this.spiritBook = new SpiritBook("Spiritbook",4,1,2);
   }
   public void setInventory(){
     this.items = new ArrayList<>();
@@ -222,4 +228,11 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public Alpaca getTargetAlpaca() {
     return targetAlpaca;
   }
+
+  @Override
+  @Test
+  public void equipBookTest() { checkEquippedItem(getBow());}
+
+  @Override
+  public DarknessBook getDarknessBook(){return darknessBook;}
 }

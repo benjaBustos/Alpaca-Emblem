@@ -1,7 +1,6 @@
 package model.units;
 
-import model.items.Axe;
-import model.items.IEquipableItem;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -18,6 +17,16 @@ public class Fighter extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
+  @Override
+  public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveWeaknessAttack(dbook);}
+  @Override
+  public void receiveAttackFromLightBook(LightBook lbook){receiveWeaknessAttack(lbook);}
+  @Override
+  public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveWeaknessAttack(sbook);}
+  @Override
+  public void receiveAttackFromSword(Sword sword){receiveWeaknessAttack(sword);}
+  @Override
+  public void receiveAttackFromSpear(Spear spear){receiveResistantAttack(spear);}
   /**
    * Sets the currently equipped item of this unit.
    *
@@ -27,7 +36,7 @@ public class Fighter extends AbstractUnit {
   public void setEquippedItem(Axe item) {
     if(items.contains(item)) {
       equippedItem = item;
-      items.remove(item);
+
     }
   }
 }

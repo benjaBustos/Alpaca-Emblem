@@ -5,7 +5,10 @@ import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import model.items.IEquipableItem;
+
+
+import model.items.*;
+
 import model.map.Location;
 
 /**
@@ -21,8 +24,8 @@ import model.map.Location;
 public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> items = new ArrayList<>();
-  private final int currentHitPoints;
-  private final int movement;
+  public int currentHitPoints;
+  public int movement;
   protected IEquipableItem equippedItem;
   private Location location;
   private int maxItems;
@@ -95,17 +98,69 @@ public abstract class AbstractUnit implements IUnit {
    * adds item to list of items
    * @param item
    */
+  @Override
   public void addItem(IEquipableItem item){
     if(items.size()<maxItems){
       items.add(item);
     }
   }
+  @Override
   public void giveItem(IUnit other, IEquipableItem item){
     if(this.getLocation().distanceTo(other.getLocation())==1){
       if(this.items.contains(item)){
         item.giveTo(other);
         this.items.remove(item);
+        this.setEquippedItem(item);
       }
     }
   }
+  @Override
+  public void counterAttack(IUnit other){if(this.equippedItem != null && this.currentHitPoints > 0 && other.getCurrentHitPoints() > 0){this.equippedItem.attack(other); }
+  }
+  @Override
+  public void attack(IUnit other){
+    if(this.equippedItem != null && this.currentHitPoints > 0 && other.getCurrentHitPoints() > 0){
+      this.equippedItem.attack(other);
+      other.counterAttack(this);}
+  }
+  public void receiveAttack(IEquipableItem item){
+    this.currentHitPoints -= item.getPower();
+    if(this.currentHitPoints <= 0){
+      this.currentHitPoints = 0;
+    }
+  }
+  public void receiveHeal(IEquipableItem item){this.currentHitPoints += item.getPower();}
+  @Override
+  public void receiveAttackFromBow(Bow bow){receiveAttack(bow);}
+  @Override
+  public void receiveAttackFromAxe(Axe axe){receiveAttack(axe);}
+  @Override
+  public void receiveAttackFromSpear(Spear spear){receiveAttack(spear);}
+  @Override
+  public void receiveAttackFromSword(Sword sword){receiveAttack(sword);}
+  @Override
+  public void receiveHealFromStaff(Staff staff){receiveHeal(staff);}
+  @Override
+  public void receiveAttackFromDarknessBook(DarknessBook dbook){receiveAttack(dbook);}
+  @Override
+  public void receiveAttackFromLightBook(LightBook lbook){receiveAttack(lbook);}
+  @Override
+  public void receiveAttackFromSpiritBook(SpiritBook sbook){receiveAttack(sbook);}
+  @Override
+  public void receiveWeaknessAttack(IEquipableItem item){this.currentHitPoints -= item.getPower() * 1.5;
+    if(this.currentHitPoints <= 0){
+      this.currentHitPoints = 0;
+    }}
+  @Override
+  public void receiveResistantAttack(IEquipableItem item){this.currentHitPoints -= item.getPower() -20;
+    if(this.currentHitPoints <= 0){
+      this.currentHitPoints = 0;
+    }}
+
+
+
+
+
+
+
 }
